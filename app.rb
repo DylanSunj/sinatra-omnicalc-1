@@ -30,8 +30,8 @@ get("/payment/new") do
 end
 
 get("/payment_calc") do
-  @apr = "%.3f" % params.fetch("apr").to_f
-  @apr_percent = @apr + "%"
+  @apr = params.fetch("apr").to_f
+  @apr_percent = "%.3f" % @apr + "%"
 
   @years = params.fetch("years").to_i
 
@@ -39,7 +39,26 @@ get("/payment_calc") do
   @principal_amount = "$" + "%.2f" % @principal 
 
   n = @years * 12
-  rate = 
+  rate = (@apr / 100) / 12
+  
+  numerator = rate * @principal
+  denominator = 1 - (1+rate)**-n
+
+  payment = numerator / denominator 
+  @final_payment =  "$" + "%.2f" % payment
 
   erb(:payment_calc)
+end
+
+get("/random/new") do 
+  erb(:random)
+end 
+
+get("/random_calc") do 
+  @min = params.fetch("min").to_f
+  @max = params.fetch("max").to_f
+
+  @random = rand(@min..@max)
+
+  erb(:random_calc)
 end
