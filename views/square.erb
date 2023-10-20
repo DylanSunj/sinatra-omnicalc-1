@@ -1,10 +1,10 @@
-<h1> Dice Roll </h1>
+<h1> Square Results </h1>
 
-<form action="/process_roll">
-<label for="dice">Number of dice to roll?</label>
-<input id="dice" name="dice">
+<dl>
+<dt> Number </dt>
+  <dd> <%= @number_square %> </dd>
+<dt> Square </dt>
+  <dd> <%= @number_square ** 2 %> </dd>
+</dl>
 
-<label for="sides">How many sides per die?</label>
-<input id="sides" name="sides">
-<button>Roll!</button>
-</form>
+<a href = "/square/new"> Calculate another square </a>
