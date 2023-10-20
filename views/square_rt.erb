@@ -4,7 +4,7 @@
 <dt> Number </dt>
   <dd> <%= @number_square %> </dd>
 <dt> Square Root </dt>
-  <dd> <%= @number_square ** 1/2 %> </dd>
+  <dd> <%= (@number_square ** 0.5).to_f %> </dd>
 </dl>
 
 <a href = "/square_root/new"> Calculate another square root </a>

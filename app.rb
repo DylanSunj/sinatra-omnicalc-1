@@ -29,9 +29,9 @@ get("/payment/new") do
   erb(:payment)
 end
 
-get("/payment_calc") do
+get("/payment") do
   @apr = params.fetch("apr").to_f
-  @apr_percent = "%.3f" % @apr + "%"
+  @apr_percent = "%.4f" % @apr + "%"
 
   @years = params.fetch("years").to_i
 
@@ -45,7 +45,7 @@ get("/payment_calc") do
   denominator = 1 - (1+rate)**-n
 
   payment = numerator / denominator 
-  @final_payment =  "$" + "%.2f" % payment
+  @final_payment =  payment.to_fs(:currency)
 
   erb(:payment_calc)
 end
